@@ -7,6 +7,10 @@ export const Head = styled.div `
     {
         display: none;
     }
+    .menu
+    {
+        display: none;
+    }
     .nav
     {
         width: 50%;
@@ -20,15 +24,15 @@ export const Head = styled.div `
     {
             border: 2px solid  red;
     }
-    @media only screen and (max-width: 600px) 
+    @media only screen and (max-width: 790px) 
     {
-        /* .bar
+        .bar
         {
             display: block;
             font-size: 1.6rem;
             margin-right : 10px;
             margin-top: 3px;
-        } */
+        }
         .nav
         {
             display: none;
@@ -41,6 +45,30 @@ export const Head = styled.div `
         .avatar
         {
             order: 2;
+        }
+        .menu
+        {
+             display: block;
+             width: 200px;
+             height: 100vh;
+             position: absolute;
+             background-color: #fff;
+             top: 0;
+             /* left: -200%; */
+             border: 1px solid #444;
+             z-index: 122211;
+             transition: .5s all;
+             #back
+             {
+                font-size: 2rem;
+                margin: 20px;
+             }
+        }
+        #hide{
+            left: -200%;
+        }
+        #show{
+            left: 0;
         }
     }
 `
