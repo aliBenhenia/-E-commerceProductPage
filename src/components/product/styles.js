@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProductStyles = styled.div `
-
+    user-select: none;
     #full_img
     {
         border-radius : 17px;
@@ -24,6 +24,7 @@ export const ProductStyles = styled.div `
     }
     #pay
     {
+        
         h5
         {
             color: #FF7D18;
@@ -41,6 +42,7 @@ export const ProductStyles = styled.div `
             margin-top : 55px;
             line-height: 2;
             color: #767C88;
+            margin-right: 19px;
         }
         #price
         {
@@ -59,17 +61,57 @@ export const ProductStyles = styled.div `
                 font-weight: bold;
             }
         }
+        #canceledPrice h1
+        {
+            font-size: 16px;
+            color: grey;
+            text-decoration: line-through;
+        }
         #quant
         {
             background-color: #F6F9FD;
             display: flex;
-            padding: 15px;
+            width: 250px;
+            margin-top: 10rem;
+            /* padding: 10px; */
             margin: 0;
-            p
+            align-items: center;
+            justify-content: center;  
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            h3
             {
-                margin-left: 10px;
                 font-weight: 700;
-                font-size: 3rem;
+                font-size: 2rem;
+            }
+            .op1
+            {
+                margin-right: 4rem;
+            }
+            .op1,.op3
+            {
+                color: #FF7D18;
+                margin-left: 4rem;
+            }
+            .op3
+            {
+                margin-right: 4rem;
+            }
+        }
+        .bttn
+        {
+            #bttn
+            {
+                background-color: #FF7D18;
+                width: 250px;
+                height: 47px;
+                font-weight: 500;
+                font-size: 19px;
+                #crt
+                {
+                    font-size: 1.4rem;
+                    margin-bottom: 10px;
+                }
             }
         }
     }

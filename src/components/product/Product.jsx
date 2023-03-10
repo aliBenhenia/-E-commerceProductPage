@@ -6,8 +6,8 @@ import pt3 from "../../images/pt3.jpg"
 import p1 from "../../images/p1.jpg"
 import p2 from "../../images/p2.jpg"
 import p3 from "../../images/p3.jpg"
-import { Image ,Badge} from 'antd'
-
+import { Image ,Button} from 'antd'
+import {ShoppingCartOutlined} from "@ant-design/icons"
 export default function Product() {
   const [img,setImg] = useState(p1);
   const [num,setnum] = useState(0);
@@ -28,6 +28,19 @@ export default function Product() {
      {
         setImg(p1);
      }
+  }
+  const handlenum = (op)=>{
+    if (op === '-')
+    {
+      if (num != 0)
+      {
+        setnum(num - 1)
+      }    
+    }
+    if (op == '+')
+    {
+        setnum(num + 1)
+    }
   }
   return (
     <ProductStyles className='container mt-5'>
@@ -56,15 +69,23 @@ export default function Product() {
               </p>
               <div id='price'>
                      <h1>$125.00</h1>
-                {/* <Badge className='bdg' count={50} /> */}
                         <div className='Badgepercent'>
                                 50%
                         </div>
               </div>
+                        <div id='canceledPrice'>  
+                           <h1>$255.00</h1> 
+                        </div>
               <div id='quant'>
-                <h3>-</h3>
-                <h3>{num}</h3>
-                <h3>+</h3>
+                <h3 className='op1' onClick={()=>handlenum('-')}>-</h3>
+                <h3 className='op2'>{num}</h3>
+                <h3 className='op3' onClick={()=>handlenum('+')}>+</h3>
+              </div>
+              <div className='bttn'>
+                  <Button id='bttn' type="primary" size = "large" onClick={()=> setnum(0)}>
+                  <ShoppingCartOutlined id='crt' />
+                    Add to cart
+                  </Button>
               </div>
             </div>
         </div>
