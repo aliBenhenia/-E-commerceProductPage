@@ -24,6 +24,14 @@ export const Head = styled.div `
     {
             border: 2px solid  red;
     }
+    #btn
+    {
+                 background-color: #FF7D18;
+                width: 250px;
+                height: 47px;
+                font-weight: 500;
+                font-size: 19px;
+    }
     @media only screen and (max-width: 790px) 
     {
         .bar

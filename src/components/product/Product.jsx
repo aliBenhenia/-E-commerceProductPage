@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import {  ProductStyles } from './styles'
 import pt1 from "../../images/pt1.jpg"
-import pt2 from "../../images/pt2.jpg"
 import pt3 from "../../images/pt3.jpg"
 import p1 from "../../images/p1.jpg"
 import p2 from "../../images/p2.jpg"
 import p3 from "../../images/p3.jpg"
 import { Image ,Button} from 'antd'
 import {ShoppingCartOutlined} from "@ant-design/icons"
+import { useDispatch } from 'react-redux'
 export default function Product() {
+  const dispatch = useDispatch();
   const [img,setImg] = useState(p1);
   const [num,setnum] = useState(0);
   const handleImg = (pic)=>{
@@ -41,6 +42,11 @@ export default function Product() {
     {
         setnum(num + 1)
     }
+  }
+  // ()=> setnum(0)
+  const handleAdd = ()=>{
+    setnum(0);
+    dispatch({type : "ADD", pyload : num});
   }
   return (
     <ProductStyles className='container mt-5'>
@@ -82,7 +88,7 @@ export default function Product() {
                 <h3 className='op3' onClick={()=>handlenum('+')}>+</h3>
               </div>
               <div className='bttn'>
-                  <Button id='bttn' type="primary" size = "large" onClick={()=> setnum(0)}>
+                  <Button id='bttn' type="primary" size = "large" onClick={handleAdd}>
                   <ShoppingCartOutlined id='crt' />
                     Add to cart
                   </Button>

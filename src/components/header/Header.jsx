@@ -3,10 +3,15 @@ import React, { useState } from 'react'
 import logo from "../../images/logo.svg"
 import userProfile from "../../images/image-avatar.png"
 import bar from "../../images/icon-menu.svg"
-import {ShoppingCartOutlined,BarsOutlined,ArrowLeftOutlined} from "@ant-design/icons"
+import {ShoppingCartOutlined,BarsOutlined,ArrowLeftOutlined,DeleteOutlined} from "@ant-design/icons"
 import { Head } from './styles'
-import { Avatar } from 'antd'
+import { Avatar,Popover,Button} from 'antd'
+import pt1 from "../../images/pt1.jpg"
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { type } from '@testing-library/user-event/dist/type'
 export default function Header() {
+    const data = useSelector(item=>item)
     const [open,setopen] = useState(false);
     const handlOpen = ()=>{
         setopen(!open);
@@ -52,7 +57,6 @@ export default function Header() {
                <ArrowLeftOutlined onClick={handlOpen} id='back' />
                     <Menu 
                     mode='vertical'
-                    
                     items={
                         [
                             {
@@ -78,8 +82,15 @@ export default function Header() {
                         ]
                     }
                     />
-               </div>
-                <ShoppingCartOutlined className = 'cart'/>
+               </div> 
+               <Popover placement="bottom" title={<h3>cart</h3>} 
+               content={
+                    <CartPopUp data = {data}/>
+                } 
+               trigger="click"
+               >
+                     <ShoppingCartOutlined className = 'cart'/>
+                 </Popover>
                 <Avatar className='avatar' size={50} icon={<Avat />} />
      </Head>
     </div>
@@ -92,5 +103,43 @@ function Avat()
         <div>
             <img style={{width : "100%"}} src = {userProfile} alt='avatar'/>
         </div>
+    );
+}
+
+function CartPopUp(props) 
+{
+    const dispatch = useDispatch();
+    return(
+        <div className='container'>
+        <hr />
+         {
+         props.data ? 
+            <div className='row'>
+            <img src = {pt1} style={{
+                width : "77px"
+            }}
+            className ="col-5"
+            />
+            <p className ="col-6"style={{color : "#707783"}}>
+                    Fall Limited Edition Sneakers $125.00 × {props.data} ${125 * props.data}
+            </p>
+            <DeleteOutlined className ="col-1" style={{
+                fontSize : "1.4rem"
+            }}
+            onClick = {()=>dispatch(type == "RM")}
+            />
+            <Button 
+            style={{
+                background : "#FF7D18",
+                fontWeight : "bold"
+            }} 
+            className='mt-3' 
+            type="primary" 
+            size = "large" 
+            id='btn'>Checkout</Button>
+       </div>
+         : <h1 className='h6' style={{color : "#707783"}}>Your cart is empty</h1>
+        }
+    </div>
     );
 }
