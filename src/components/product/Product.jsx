@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import {  ProductStyles } from './styles'
 import pt1 from "../../images/pt1.jpg"
 import pt3 from "../../images/pt3.jpg"
@@ -42,10 +42,13 @@ export default function Product() {
     {
         setnum(num + 1)
     }
+    localStorage.setItem("num",num);
   }
-  // ()=> setnum(0)
-  const handleAdd = ()=>{
-    setnum(0);
+  // useEffect(() => {
+  //   setnum(localStorage.getItem("num"))
+  // }, [])
+  const handleAdd = ()=>{ 
+    // setnum(0);
     dispatch({type : "ADD", pyload : num});
   }
   return (
@@ -63,7 +66,7 @@ export default function Product() {
                     <img onClick={()=>handleImg(2)} src = {pt3} alt = "img"/>
                     <img onClick={()=>handleImg(3)} src = {pt1} alt = "img"/>
                 </div>
-                </div>
+                </div> 
             </div>
             <div className='col-md-5 mt-4' id='pay'>
               <h5>

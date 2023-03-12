@@ -20,13 +20,32 @@ export const Head = styled.div `
         font-size: 2rem;
         margin-right: 3rem;
     }
+    section
+    {
+        /* background : blue; */
+        position : relative;
+        #bdg
+        {
+            position : absolute;
+            background : crimson;
+            left : 16%;
+            top : 1%;
+            width : 15px;
+            font-size : 9px;
+            border-radius : 50px;
+            color : #fff;
+            /* padding : 2px; */
+            padding-left : 5px;
+            padding-right :15px;
+        }
+    }
     .avatar:hover
     {
             border: 2px solid  red;
     }
     #btn
     {
-                 background-color: #FF7D18;
+                background-color: #FF7D18;
                 width: 250px;
                 height: 47px;
                 font-weight: 500;
@@ -44,6 +63,10 @@ export const Head = styled.div `
         .nav
         {
             display: none;
+        }
+        section
+        {
+            margin-left: auto;
         }
         .cart
         {

@@ -79,6 +79,7 @@ export const ProductStyles = styled.div `
             justify-content: center;  
             margin-bottom: 2rem;
             border-radius: 15px;
+           
             h3
             {
                 font-weight: 700;

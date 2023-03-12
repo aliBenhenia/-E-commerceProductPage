@@ -1,11 +1,11 @@
 import { Menu } from 'antd'
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import logo from "../../images/logo.svg"
 import userProfile from "../../images/image-avatar.png"
 import bar from "../../images/icon-menu.svg"
 import {ShoppingCartOutlined,BarsOutlined,ArrowLeftOutlined,DeleteOutlined} from "@ant-design/icons"
 import { Head } from './styles'
-import { Avatar,Popover,Button} from 'antd'
+import { Avatar,Popover,Button,Badge} from 'antd'
 import pt1 from "../../images/pt1.jpg"
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
@@ -54,7 +54,7 @@ export default function Header() {
              }
              />
                <div className='menu' id = {open  ? "show" : "hide"}>
-               <ArrowLeftOutlined onClick={handlOpen} id='back' />
+               <ArrowLeftOutlined onClick={handlOpen} id='back' /> 
                     <Menu 
                     mode='vertical'
                     items={
@@ -83,14 +83,16 @@ export default function Header() {
                     }
                     />
                </div> 
-               <Popover placement="bottom" title={<h3>cart</h3>} 
-               content={
-                    <CartPopUp data = {data}/>
-                } 
-               trigger="click"
-               >
-                     <ShoppingCartOutlined className = 'cart'/>
-                 </Popover>
+                <section>
+                        <Popover placement="bottom" title={<h3>cart</h3>} 
+                                content={
+                                    <CartPopUp data = {data}/>
+                                } 
+                                trigger="click">
+                            <ShoppingCartOutlined className = 'cart'/>
+                        </Popover>
+                           <div id = "bdg">{data}</div>
+                </section>
                 <Avatar className='avatar' size={50} icon={<Avat />} />
      </Head>
     </div>
@@ -109,6 +111,8 @@ function Avat()
 function CartPopUp(props) 
 {
     const dispatch = useDispatch();
+    const [cartData, setCartData] = useState(props.data);
+ 
     return(
         <div className='container'>
         <hr />
@@ -121,12 +125,12 @@ function CartPopUp(props)
             className ="col-5"
             />
             <p className ="col-6"style={{color : "#707783"}}>
-                    Fall Limited Edition Sneakers $125.00 × {props.data} ${125 * props.data}
+                    Fall Limited Edition Sneakers $125.00 × {cartData} ${125 * cartData}
             </p>
             <DeleteOutlined className ="col-1" style={{
                 fontSize : "1.4rem"
             }}
-            onClick = {()=>dispatch(type == "RM")}
+            onClick = {()=>dispatch({type : "RM",payload : 0})}
             />
             <Button 
             style={{
